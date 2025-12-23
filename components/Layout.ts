@@ -1,4 +1,6 @@
 import { type Html, html } from '@mastrojs/mastro'
+import { Header } from '../components/Header.js'
+import { Footer } from '../components/Footer.js'
 
 interface Props {
   children: Html
@@ -14,8 +16,7 @@ export const Layout = (props: Props) => html`
       <link rel="stylesheet" href="/styles.css" />
     </head>
     <body>
-      <h1>${props.title}</h1>
-      ${props.children}
+      ${Header()} ${props.children} ${Footer()}
     </body>
   </html>
 `
