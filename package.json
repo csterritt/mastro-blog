@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@mastrojs/mastro": "npm:@jsr/mastrojs__mastro",
+    "prettier": "3.7.4",
     "urlpattern-polyfill": "^10.1.0"
   },
   "devDependencies": {
