@@ -2,7 +2,7 @@ import { type Html, html } from '@mastrojs/mastro'
 import { Header } from '../components/Header.js'
 import { Footer } from '../components/Footer.js'
 
-interface Props {
+export interface Props {
   children: Html
   title: string
 }

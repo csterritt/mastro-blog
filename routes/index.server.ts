@@ -1,10 +1,21 @@
 import { html, htmlToResponse } from '@mastrojs/mastro'
-import { Layout } from '../components/Layout.ts'
+import { readMarkdownFiles } from '@mastrojs/markdown'
+import { Layout } from '../components/Layout.js'
 
-export const GET = (_req: Request) =>
-  htmlToResponse(
+export const GET = async () => {
+  const posts = await readMarkdownFiles('data/posts/*.md')
+  return htmlToResponse(
     Layout({
-      title: 'Hello World',
-      children: html` <p>Welcome!</p> `,
+      title: 'News',
+      children: posts.map(
+        (post) => html`
+          <p>
+            <a href="${'/news' + post.path.slice(11, -3)}">
+              ${post.meta.title}
+            </a>
+          </p>
+        `
+      ),
     })
   )
+}
