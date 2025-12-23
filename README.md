@@ -14,7 +14,7 @@ After that, to start the server:
 
     bun run start
 
-and open <http://localhost:8000> in your browser.
+and open <http://localhost:3000> in your browser.
 
 To generate the whole static site (this will create a `generated` folder):
 

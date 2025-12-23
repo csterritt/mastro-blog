@@ -1,6 +1,6 @@
 import server from "@mastrojs/mastro/server";
 
-const port = 8000;
+const port = 3000;
 Bun.serve({
   port,
   fetch: server.fetch,
