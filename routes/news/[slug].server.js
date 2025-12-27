@@ -1,19 +1,10 @@
-import { basename } from 'path'
-import { getParams, htmlToResponse } from '@mastrojs/mastro'
+import { getParams, htmlToResponse, readDir } from '@mastrojs/mastro'
 import { readMarkdownFile } from '@mastrojs/markdown'
 import { Layout } from '../../components/Layout.js'
 
 export const getStaticPaths = async () => {
-  const fs = await import('fs')
-
-  const postsDir = 'data/posts'
-  const files = fs.readdirSync(postsDir)
-
-  const paths = files
-    .filter((file) => file.endsWith('.md'))
-    .map((file) => '/' + 'news' + '/' + basename(file, '.md'))
-  console.log(`paths is`, paths)
-  return paths
+  const posts = await readDir('data/posts/')
+  return posts.map((p) => '/news/' + p.slice(0, -3))
 }
 
 export const GET = async (req) => {
