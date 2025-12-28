@@ -7,15 +7,7 @@ export const GET = async () => {
   return htmlToResponse(
     Layout({
       title: 'News',
-      children: posts.map(
-        (post) => html`
-          <p>
-            <a href="${'http://localhost:3000/news' + post.path.slice(11, -3)}">
-              ${post.meta.title}
-            </a>
-          </p>
-        `
-      ),
+      children: html` <p>Cool beans.</p> `,
     })
   )
 }
