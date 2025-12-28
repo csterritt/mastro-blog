@@ -215,6 +215,32 @@ const findJpegFiles = async (dir: string): Promise<string[]> => {
   return results
 }
 
+const generateGalleryIndex = (
+  galleryEntries: Array<{ path: string; title: string }>
+): string => {
+  const links = galleryEntries
+    .map((entry) => {
+      return `        <a href="/gallery/${entry.path}/" class="link link-primary">${escapeHtml(entry.title)}</a>`
+    })
+    .join('\n')
+
+  return `import { html, htmlToResponse } from '@mastrojs/mastro'
+import { Layout } from '../../components/Layout.js'
+
+export const GET = () =>
+  htmlToResponse(
+    Layout({
+      title: 'Photo Gallery',
+      children: html\`
+        <div class="text-xl">Photo Gallery</div>
+        <p>Browse our photo collections:</p>
+${links}
+      \`,
+    })
+  )
+`
+}
+
 const main = async () => {
   console.log('Cleaning gallery directory...')
   await rm(GALLERY_DIR, { recursive: true, force: true })
@@ -224,6 +250,8 @@ const main = async () => {
   const aboutFiles = await findAboutFiles(DATA_DIR)
   console.log(`Found ${aboutFiles.length} about.md files`)
 
+  const galleryEntries: Array<{ path: string; title: string }> = []
+
   for (const aboutFile of aboutFiles) {
     const dataSubdir = aboutFile.slice(DATA_DIR.length + 1, -'/about.md'.length)
     const leafName = dataSubdir.split('/').pop() || dataSubdir
@@ -231,6 +259,8 @@ const main = async () => {
 
     const content = await readFile(aboutFile, 'utf-8')
     const parsed = parseAboutMd(content)
+
+    galleryEntries.push({ path: dataSubdir, title: parsed.title })
 
     const gallerySubdir = join(GALLERY_DIR, dataSubdir)
     await mkdir(gallerySubdir, { recursive: true })
@@ -262,6 +292,12 @@ const main = async () => {
       }
     }
   }
+
+  console.log('Generating gallery index...')
+  const indexContent = generateGalleryIndex(galleryEntries)
+  const indexFile = join(GALLERY_DIR, '(gallery).server.ts')
+  await writeFile(indexFile, indexContent)
+  console.log(`  Created: ${indexFile}`)
 
   console.log('Done!')
 }
