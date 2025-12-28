@@ -129,6 +129,40 @@ const escapeHtml = (str: string): string => {
     .replace(/'/g, '&#039;')
 }
 
+const generateImageDetailPage = (
+  imageName: string,
+  description: string,
+  galleryPath: string,
+  relativeToComponents: string,
+  galleryTitle: string
+): string => {
+  const imageNameWithoutExt = imageName.replace(/\.jpeg$/i, '')
+
+  return `import { html, htmlToResponse } from '@mastrojs/mastro'
+import { Layout } from '${relativeToComponents}/components/Layout.js'
+
+export const GET = () =>
+  htmlToResponse(
+    Layout({
+      title: '${escapeHtml(galleryTitle)}',
+      children: html\`
+        <div class="max-w-4xl mx-auto">
+          <div class="flex flex-row justify-between">
+            <p class="mb-4">${escapeHtml(description)}</p>
+            <a href="/gallery/${galleryPath}/" class="btn btn-circle btn-primary mt-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </a>
+          </div>
+          <img src="/gallery/${galleryPath}/images/${imageName}" alt="${escapeHtml(description)}" class="w-full" />
+        </div>
+      \`,
+    })
+  )
+`
+}
+
 const generateRouteContent = (
   parsed: ParsedAbout,
   galleryPath: string,
@@ -139,15 +173,16 @@ const generateRouteContent = (
   const imageCards = parsed.images
     .map((img) => {
       const descriptionText = img.paragraphs.join(' ')
+      const imageNameWithoutExt = img.filename.replace(/\.jpeg$/i, '')
       return `
-        <div class="card bg-base-100 shadow-xl">
+        <a href="/gallery/${galleryPath}/big/${imageNameWithoutExt}/" class="card bg-base-100 shadow-xl cursor-pointer hover:shadow-2xl transition-shadow">
           <figure>
             <img src="/gallery/${galleryPath}/images/${img.filename}" alt="${escapeHtml(descriptionText)}" />
           </figure>
           <div class="card-body">
             <p>${escapeHtml(descriptionText)}</p>
           </div>
-        </div>`
+        </a>`
     })
     .join('\n')
 
@@ -324,6 +359,33 @@ const main = async () => {
         await copyFile(jpegFile, destFile)
         console.log(`  Copied: ${filename}`)
       }
+    }
+
+    const bigDir = join(gallerySubdir, 'big')
+    await mkdir(bigDir, { recursive: true })
+
+    for (const img of parsed.images) {
+      const descriptionText = img.paragraphs.join(' ')
+      const imageNameWithoutExt = img.filename.replace(/\.jpeg$/i, '')
+      const bigDepth = dataSubdir.split('/').length + 2
+      const bigRelativeToComponents = '../'.repeat(bigDepth) + '..'
+
+      const imageDetailDir = join(bigDir, imageNameWithoutExt)
+      await mkdir(imageDetailDir, { recursive: true })
+
+      const imageDetailContent = generateImageDetailPage(
+        img.filename,
+        descriptionText,
+        dataSubdir,
+        bigRelativeToComponents,
+        parsed.title
+      )
+      const imageDetailFile = join(
+        imageDetailDir,
+        `(${imageNameWithoutExt}).server.ts`
+      )
+      await writeFile(imageDetailFile, imageDetailContent)
+      console.log(`  Created image detail: ${imageDetailFile}`)
     }
   }
 
