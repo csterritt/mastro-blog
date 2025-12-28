@@ -1,5 +1,5 @@
 import { readdir, readFile, rm, mkdir, copyFile, writeFile } from 'fs/promises'
-import { join, relative } from 'path'
+import { join } from 'path'
 
 interface ImageEntry {
   filename: string
@@ -152,7 +152,7 @@ const generateRouteContent = (
   const subdirLinks = parsed.subdirs
     .map((subdir) => {
       return `
-        <a href="/gallery/${galleryPath}/${subdir.name}/" class="link link-primary">${escapeHtml(subdir.description)}</a>`
+        <a href="/gallery/${galleryPath}/${subdir.name}/" class="link link-tertiary underline">${escapeHtml(subdir.description)}</a>`
     })
     .join('\n')
 
@@ -166,8 +166,10 @@ export const GET = () =>
       children: html\`
         <div class="text-xl">${escapeHtml(parsed.title)}</div>
         <p>${escapeHtml(parsed.introParagraph)}</p>
-${imageCards}
-${subdirLinks}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          ${imageCards}
+        </div>
+        <div class="mt-4">${subdirLinks}</div>
       \`,
     })
   )

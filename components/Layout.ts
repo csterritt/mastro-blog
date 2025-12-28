@@ -16,7 +16,7 @@ export const Layout = (props: Props) => html`
       <link rel="stylesheet" href="/styles.css" />
     </head>
     <body>
-      <main class="container mx-auto">
+      <main class="container mx-auto md:px-8 py-4">
         ${Header()} ${props.children} ${Footer()}
       </main>
     </body>
