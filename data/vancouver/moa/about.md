@@ -6,5 +6,4 @@ exhibits.
 
 ## IDG_20251102_154332_999.jpeg
 
-- data/vancouver/moa/IDG_20251102_154332_999.jpeg
-- One of the house identification poles from one of the indiginous peoples.
+One of the house identification poles from one of the indiginous peoples.
