@@ -2,7 +2,7 @@
   "name": "my-website",
   "type": "module",
   "scripts": {
-    "start": "bun --watch server.ts",
+    "start": "./run-dev.sh",
     "generate": "bun node_modules/@mastrojs/mastro/src/generator.js",
     "check": "tsc"
   },
@@ -10,11 +10,15 @@
     "@jsr/mastrojs__mastro": "0.6.1",
     "@mastrojs/markdown": "npm:@jsr/mastrojs__markdown",
     "@mastrojs/mastro": "npm:@jsr/mastrojs__mastro",
+    "@tailwindcss/cli": "4.1.18",
+    "concurrently": "9.2.1",
     "prettier": "3.7.4",
+    "tailwindcss": "4.1.18",
     "urlpattern-polyfill": "^10.1.0"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "daisyui": "5.5.14"
   },
   "peerDependencies": {
     "typescript": "^5"
