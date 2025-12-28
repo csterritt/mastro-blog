@@ -7,8 +7,8 @@ const buildChildren = () => {
     <p>Explore our photo galleries:</p>
     <ul>
       <li>
-        <a href="/gallery/vancouver/" class="link link-tertiary underline">
-          Our trip to Vancouver and Japan
+        <a href="/gallery/" class="link link-tertiary underline">
+          Recent photos
         </a>
       </li>
     </ul>

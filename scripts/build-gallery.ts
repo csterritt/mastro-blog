@@ -220,7 +220,7 @@ const generateGalleryIndex = (
 ): string => {
   const links = galleryEntries
     .map((entry) => {
-      return `        <a href="/gallery/${entry.path}/" class="link link-primary">${escapeHtml(entry.title)}</a>`
+      return `        <a href="/gallery/${entry.path}/" class="link link-tertiary underline">${escapeHtml(entry.title)}</a>`
     })
     .join('\n')
 
@@ -260,7 +260,9 @@ const main = async () => {
     const content = await readFile(aboutFile, 'utf-8')
     const parsed = parseAboutMd(content)
 
-    galleryEntries.push({ path: dataSubdir, title: parsed.title })
+    if (!dataSubdir.includes('/')) {
+      galleryEntries.push({ path: dataSubdir, title: parsed.title })
+    }
 
     const gallerySubdir = join(GALLERY_DIR, dataSubdir)
     await mkdir(gallerySubdir, { recursive: true })

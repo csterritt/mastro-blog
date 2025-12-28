@@ -17,7 +17,7 @@ The City Hall building, showing off the cool art-deco architecture and neon (!!!
 
 ### trees
 
-Some local beauty, with lots of fall colors.
+Some local trees, with lots of fall colors.
 
 ### moa
 
