@@ -136,8 +136,6 @@ const generateImageDetailPage = (
   relativeToComponents: string,
   galleryTitle: string
 ): string => {
-  const imageNameWithoutExt = imageName.replace(/\.jpeg$/i, '')
-
   return `import { html, htmlToResponse } from '@mastrojs/mastro'
 import { Layout } from '${relativeToComponents}/components/Layout.js'
 
@@ -147,9 +145,9 @@ export const GET = () =>
       title: '${escapeHtml(galleryTitle)}',
       children: html\`
         <div class="max-w-4xl mx-auto">
-          <div class="flex flex-row justify-between">
-            <p class="mb-4">${escapeHtml(description)}</p>
-            <a href="/gallery/${galleryPath}/" class="btn btn-circle btn-primary mt-4">
+          <div class="flex flex-row justify-between items-center mb-4">
+            <p>${escapeHtml(description)}</p>
+            <a href="/gallery/${galleryPath}/" class="btn btn-circle btn-primary">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -367,7 +365,7 @@ const main = async () => {
     for (const img of parsed.images) {
       const descriptionText = img.paragraphs.join(' ')
       const imageNameWithoutExt = img.filename.replace(/\.jpeg$/i, '')
-      const bigDepth = dataSubdir.split('/').length + 2
+      const bigDepth = dataSubdir.split('/').length + 3
       const bigRelativeToComponents = '../'.repeat(bigDepth) + '..'
 
       const imageDetailDir = join(bigDir, imageNameWithoutExt)
