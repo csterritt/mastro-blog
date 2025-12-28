@@ -3,8 +3,7 @@ import { Layout } from '../components/Layout.js'
 
 const buildChildren = () => {
   return html`
-    <h1>Gallery Index</h1>
-    <p>Explore our photo galleries:</p>
+    <h1>Home</h1>
     <ul>
       <li>
         <a href="/gallery/" class="link link-tertiary underline">

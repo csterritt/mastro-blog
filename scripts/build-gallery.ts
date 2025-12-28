@@ -132,7 +132,9 @@ const escapeHtml = (str: string): string => {
 const generateRouteContent = (
   parsed: ParsedAbout,
   galleryPath: string,
-  relativeToComponents: string
+  relativeToComponents: string,
+  parentPath: string | null,
+  parentTitle: string | null
 ): string => {
   const imageCards = parsed.images
     .map((img) => {
@@ -156,6 +158,12 @@ const generateRouteContent = (
     })
     .join('\n')
 
+  const backButton =
+    parentPath && parentTitle
+      ? `
+        <a href="${parentPath}" class="btn btn-primary mt-4">Back to ${escapeHtml(parentTitle)}</a>`
+      : ''
+
   return `import { html, htmlToResponse } from '@mastrojs/mastro'
 import { Layout } from '${relativeToComponents}/components/Layout.js'
 
@@ -170,6 +178,7 @@ export const GET = () =>
           ${imageCards}
         </div>
         <div class="mt-4">${subdirLinks}</div>
+        ${backButton}
       \`,
     })
   )
@@ -251,6 +260,18 @@ const main = async () => {
   console.log(`Found ${aboutFiles.length} about.md files`)
 
   const galleryEntries: Array<{ path: string; title: string }> = []
+  const titleMap = new Map<string, string>()
+
+  for (const aboutFile of aboutFiles) {
+    const dataSubdir = aboutFile.slice(DATA_DIR.length + 1, -'/about.md'.length)
+    const content = await readFile(aboutFile, 'utf-8')
+    const parsed = parseAboutMd(content)
+    titleMap.set(dataSubdir, parsed.title)
+
+    if (!dataSubdir.includes('/')) {
+      galleryEntries.push({ path: dataSubdir, title: parsed.title })
+    }
+  }
 
   for (const aboutFile of aboutFiles) {
     const dataSubdir = aboutFile.slice(DATA_DIR.length + 1, -'/about.md'.length)
@@ -260,8 +281,17 @@ const main = async () => {
     const content = await readFile(aboutFile, 'utf-8')
     const parsed = parseAboutMd(content)
 
-    if (!dataSubdir.includes('/')) {
-      galleryEntries.push({ path: dataSubdir, title: parsed.title })
+    const pathParts = dataSubdir.split('/')
+    let parentPath: string | null = null
+    let parentTitle: string | null = null
+
+    if (pathParts.length > 1) {
+      const parentDataPath = pathParts.slice(0, -1).join('/')
+      parentPath = `/gallery/${parentDataPath}/`
+      parentTitle = titleMap.get(parentDataPath) || null
+    } else {
+      parentPath = '/gallery/'
+      parentTitle = 'Photo Gallery'
     }
 
     const gallerySubdir = join(GALLERY_DIR, dataSubdir)
@@ -273,7 +303,9 @@ const main = async () => {
     const routeContent = generateRouteContent(
       parsed,
       dataSubdir,
-      relativeToComponents
+      relativeToComponents,
+      parentPath,
+      parentTitle
     )
     const routeFile = join(gallerySubdir, `(${leafName}).server.ts`)
     await writeFile(routeFile, routeContent)
