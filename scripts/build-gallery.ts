@@ -14,6 +14,7 @@ interface SubdirEntry {
 interface ParsedAbout {
   title: string
   introParagraph: string
+  thumbnail?: string
   images: ImageEntry[]
   subdirs: SubdirEntry[]
 }
@@ -26,6 +27,7 @@ const parseAboutMd = (content: string): ParsedAbout => {
   const lines = content.split('\n')
   let title = ''
   let introParagraph = ''
+  let thumbnail: string | undefined
   const images: ImageEntry[] = []
   const subdirs: SubdirEntry[] = []
 
@@ -40,6 +42,12 @@ const parseAboutMd = (content: string): ParsedAbout => {
     if (line.startsWith('# Title: ')) {
       title = line.slice('# Title: '.length).trim()
       collectingIntro = true
+      continue
+    }
+
+    const trimmedLine = line.trim()
+    if (trimmedLine.startsWith('- thumb:')) {
+      thumbnail = trimmedLine.slice('- thumb:'.length).trim()
       continue
     }
 
@@ -117,7 +125,7 @@ const parseAboutMd = (content: string): ParsedAbout => {
     subdirs.push(currentSubdir)
   }
 
-  return { title, introParagraph, images, subdirs }
+  return { title, introParagraph, thumbnail, images, subdirs }
 }
 
 const escapeHtml = (str: string): string => {
@@ -166,7 +174,8 @@ const generateRouteContent = (
   galleryPath: string,
   relativeToComponents: string,
   parentPath: string | null,
-  parentTitle: string | null
+  parentTitle: string | null,
+  metadataMap: Map<string, { title: string; thumbnail?: string }>
 ): string => {
   const imageCards = parsed.images
     .map((img) => {
@@ -186,8 +195,17 @@ const generateRouteContent = (
 
   const subdirLinks = parsed.subdirs
     .map((subdir) => {
+      const subdirPath = `${galleryPath}/${subdir.name}`
+      const subdirMetadata = metadataMap.get(subdirPath)
+      const subdirThumb = subdirMetadata?.thumbnail
+
+      const thumbHtml = subdirThumb
+        ? `<figure class="h-32 overflow-hidden"><img src="/gallery/${subdirPath}/images/${subdirThumb}" alt="${escapeHtml(subdir.description)}" class="w-full h-full object-cover" /></figure>`
+        : ''
+
       return `
-        <a href="/gallery/${galleryPath}/${subdir.name}/" class="card bg-base-100 shadow hover:shadow-md transition-shadow">
+        <a href="/gallery/${subdirPath}/" class="card bg-base-100 shadow hover:shadow-md transition-shadow overflow-hidden">
+          ${thumbHtml}
           <div class="card-body p-4 flex flex-row items-center justify-between">
             <span class="font-semibold">${escapeHtml(subdir.description)}</span>
              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
@@ -272,12 +290,17 @@ const findJpegFiles = async (dir: string): Promise<string[]> => {
 }
 
 const generateGalleryIndex = (
-  galleryEntries: Array<{ path: string; title: string }>
+  galleryEntries: Array<{ path: string; title: string; thumbnail?: string }>
 ): string => {
   const cards = galleryEntries
     .map((entry) => {
+      const thumbHtml = entry.thumbnail
+        ? `<figure class="h-32 overflow-hidden"><img src="/gallery/${entry.path}/images/${entry.thumbnail}" alt="${escapeHtml(entry.title)}" class="w-full h-full object-cover" /></figure>`
+        : ''
+
       return `
-        <a href="/gallery/${entry.path}/" class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+        <a href="/gallery/${entry.path}/" class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden">
+          ${thumbHtml}
           <div class="card-body">
             <h2 class="card-title text-primary">${escapeHtml(entry.title)}</h2>
             <div class="card-actions justify-end">
@@ -320,17 +343,28 @@ const main = async () => {
   const aboutFiles = await findAboutFiles(DATA_DIR)
   console.log(`Found ${aboutFiles.length} about.md files`)
 
-  const galleryEntries: Array<{ path: string; title: string }> = []
-  const titleMap = new Map<string, string>()
+  const galleryEntries: Array<{
+    path: string
+    title: string
+    thumbnail?: string
+  }> = []
+  const metadataMap = new Map<string, { title: string; thumbnail?: string }>()
 
   for (const aboutFile of aboutFiles) {
     const dataSubdir = aboutFile.slice(DATA_DIR.length + 1, -'/about.md'.length)
     const content = await readFile(aboutFile, 'utf-8')
     const parsed = parseAboutMd(content)
-    titleMap.set(dataSubdir, parsed.title)
+    metadataMap.set(dataSubdir, {
+      title: parsed.title,
+      thumbnail: parsed.thumbnail,
+    })
 
     if (!dataSubdir.includes('/')) {
-      galleryEntries.push({ path: dataSubdir, title: parsed.title })
+      galleryEntries.push({
+        path: dataSubdir,
+        title: parsed.title,
+        thumbnail: parsed.thumbnail,
+      })
     }
   }
 
@@ -349,7 +383,7 @@ const main = async () => {
     if (pathParts.length > 1) {
       const parentDataPath = pathParts.slice(0, -1).join('/')
       parentPath = `/gallery/${parentDataPath}/`
-      parentTitle = titleMap.get(parentDataPath) || null
+      parentTitle = metadataMap.get(parentDataPath)?.title || null
     } else {
       parentPath = '/gallery/'
       parentTitle = 'Photo Gallery'
@@ -366,7 +400,8 @@ const main = async () => {
       dataSubdir,
       relativeToComponents,
       parentPath,
-      parentTitle
+      parentTitle,
+      metadataMap
     )
     const routeFile = join(gallerySubdir, `(${leafName}).server.ts`)
     await writeFile(routeFile, routeContent)

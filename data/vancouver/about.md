@@ -3,6 +3,8 @@
 We wanted to break up the long flight to Japan into two parts, and I'd
 always wanted to visit Vancouver. Here are some photos from our stay.
 
+- thumb: IDG_20251101_144558_224.jpeg
+
 ## IDG_20251101_144558_224.jpeg
 
 Our initial view from the air, coming into Vancouver.

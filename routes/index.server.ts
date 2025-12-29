@@ -7,9 +7,7 @@ const buildChildren = () => {
       <div class="hero-content text-center">
         <div class="max-w-md">
           <h1 class="text-5xl font-bold">Welcome</h1>
-          <p class="py-6">
-            Explore our collection of stories and moments captured in time.
-          </p>
+          <p class="py-6">My blog, and my photo gallery.</p>
           <a href="/gallery/" class="btn btn-primary">Browse Gallery</a>
         </div>
       </div>
