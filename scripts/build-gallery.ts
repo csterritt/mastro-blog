@@ -173,12 +173,12 @@ const generateRouteContent = (
       const descriptionText = img.paragraphs.join(' ')
       const imageNameWithoutExt = img.filename.replace(/\.jpeg$/i, '')
       return `
-        <a href="/gallery/${galleryPath}/big/${imageNameWithoutExt}/" class="card bg-base-100 shadow-xl cursor-pointer hover:shadow-2xl transition-shadow">
-          <figure>
-            <img src="/gallery/${galleryPath}/images/${img.filename}" alt="${escapeHtml(descriptionText)}" />
+        <a href="/gallery/${galleryPath}/big/${imageNameWithoutExt}/" class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+          <figure class="aspect-square overflow-hidden">
+            <img src="/gallery/${galleryPath}/images/${img.filename}" alt="${escapeHtml(descriptionText)}" class="w-full h-full object-cover" />
           </figure>
-          <div class="card-body">
-            <p>${escapeHtml(descriptionText)}</p>
+          <div class="card-body p-4">
+            <p class="text-sm line-clamp-3">${escapeHtml(descriptionText)}</p>
           </div>
         </a>`
     })
@@ -187,14 +187,24 @@ const generateRouteContent = (
   const subdirLinks = parsed.subdirs
     .map((subdir) => {
       return `
-        <a href="/gallery/${galleryPath}/${subdir.name}/" class="link link-tertiary underline">${escapeHtml(subdir.description)}</a>`
+        <a href="/gallery/${galleryPath}/${subdir.name}/" class="card bg-base-100 shadow hover:shadow-md transition-shadow">
+          <div class="card-body p-4 flex flex-row items-center justify-between">
+            <span class="font-semibold">${escapeHtml(subdir.description)}</span>
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          </div>
+        </a>`
     })
     .join('\n')
 
-  const backButton =
+  const backLink =
     parentPath && parentTitle
       ? `
-        <a href="${parentPath}" class="btn btn-primary mt-4">Back to ${escapeHtml(parentTitle)}</a>`
+        <div class="mb-6">
+          <a href="${parentPath}" class="btn btn-ghost gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+            Back to ${escapeHtml(parentTitle)}
+          </a>
+        </div>`
       : ''
 
   return `import { html, htmlToResponse } from '@mastrojs/mastro'
@@ -205,13 +215,17 @@ export const GET = () =>
     Layout({
       title: '${escapeHtml(parsed.title)}',
       children: html\`
-        <div class="text-xl">${escapeHtml(parsed.title)}</div>
-        <p>${escapeHtml(parsed.introParagraph)}</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        ${backLink}
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold mb-2">${escapeHtml(parsed.title)}</h1>
+          <p class="text-lg text-base-content/80 max-w-2xl">${escapeHtml(parsed.introParagraph)}</p>
+        </div>
+        
+        ${subdirLinks ? `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">${subdirLinks}</div>` : ''}
+
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
           ${imageCards}
         </div>
-        <div class="mt-4">${subdirLinks}</div>
-        ${backButton}
       \`,
     })
   )
@@ -260,9 +274,19 @@ const findJpegFiles = async (dir: string): Promise<string[]> => {
 const generateGalleryIndex = (
   galleryEntries: Array<{ path: string; title: string }>
 ): string => {
-  const links = galleryEntries
+  const cards = galleryEntries
     .map((entry) => {
-      return `        <a href="/gallery/${entry.path}/" class="link link-tertiary underline">${escapeHtml(entry.title)}</a>`
+      return `
+        <a href="/gallery/${entry.path}/" class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+          <div class="card-body">
+            <h2 class="card-title text-primary">${escapeHtml(entry.title)}</h2>
+            <div class="card-actions justify-end">
+               <button class="btn btn-square btn-ghost">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+               </button>
+            </div>
+          </div>
+        </a>`
     })
     .join('\n')
 
@@ -274,9 +298,13 @@ export const GET = () =>
     Layout({
       title: 'Photo Gallery',
       children: html\`
-        <div class="text-xl">Photo Gallery</div>
-        <p>Browse our photo collections:</p>
-${links}
+        <div class="text-center py-8">
+          <h1 class="text-4xl font-bold mb-4">Photo Gallery</h1>
+          <p class="text-lg text-base-content/70">Browse our photo collections</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+${cards}
+        </div>
       \`,
     })
   )

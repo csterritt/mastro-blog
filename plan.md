@@ -1,90 +1,66 @@
-# Plan: Gallery Build Script
+# Modernization Plan
 
-## Overview
+This plan outlines the steps to upgrade the website's look and feel using Tailwind CSS and DaisyUI, while maintaining the existing 'retro'/'aqua' themes.
 
-Create `scripts/build-gallery.ts` that generates gallery routes from `data/` directory structure.
+## Goals
 
-## Input Structure
+- **Modern UI**: Clean lines, better spacing, responsive layouts.
+- **Accessibility**: Semantic HTML, good contrast, focus states.
+- **Visual Appeal**: Enhanced cards, transitions, and professional component structures.
 
-The script reads from `data/` directory, looking for `about.md` files in each subdirectory.
+## Phase 1: Global Layout & Navigation
 
-### about.md Format
+### `components/Layout.ts`
 
-```markdown
-# Title: Page Title Here
+- Convert to a flex-col full-height structure to ensure the footer stays at the bottom.
+- Improve container constraints (`max-w-7xl`, `mx-auto`, responsive padding).
+- Add a subtle background color/texture consistent with the theme.
 
-Introductory paragraph text.
+### `components/Header.ts`
 
-## image-filename.jpeg
+- Replace the simple `div` structure with the DaisyUI [Navbar](https://daisyui.com/components/navbar/) component.
+- Add a proper logo/brand area.
+- Style navigation links (ghost buttons or active states).
 
-Description paragraph(s) for this image.
-More paragraphs until next ## or ###.
+### `components/Footer.ts`
 
-### subdirectory-name
+- Implement the DaisyUI [Footer](https://daisyui.com/components/footer/) component.
+- Center the content and add social links placeholder or better copyright styling.
 
-Description of what's in that subdirectory.
-```
+## Phase 2: Home Page Redesign
 
-## Output Structure
+### `routes/index.server.ts`
 
-For each `data/{path}/about.md`, the script generates:
+- Replace the basic list with a **Hero Section**.
+- Add a "Call to Action" (CTA) button directing users to the Gallery.
+- Use a feature card or snippet to preview what's in the gallery.
 
-1. **Route file**: `routes/gallery/{path}/({leaf}).server.ts`
-2. **Images directory**: `routes/gallery/{path}/images/` containing copied jpeg files
+## Phase 3: Gallery Overhaul (Script Updates)
 
-### Generated Route Content
+The gallery logic lives in `scripts/build-gallery.ts`. We will modify the string templates it generates.
 
-```typescript
-import { html, htmlToResponse } from '@mastrojs/mastro'
-import { Layout } from '{relative-path}/components/Layout.js'
+### Gallery Index (`generateGalleryIndex`)
 
-export const GET = () =>
-  htmlToResponse(
-    Layout({
-      title: '{extracted-title}',
-      children: html`
-        <div class="text-xl">{title}</div>
-        <p>{intro-paragraph}</p>
+- **Grid Layout**: Use a responsive grid (`grid-cols-1 md:grid-cols-3 gap-6`) instead of a simple list.
+- **Category Cards**: Style folder links as distinct cards with icons or placeholders.
 
-        <!-- For each ## image -->
-        <div class="card">
-          <figure>
-            <img
-              src="/gallery/{path}/images/{image-filename}"
-              alt="{description}"
-            />
-          </figure>
-          <div class="card-body">
-            <p>{description-paragraphs}</p>
-          </div>
-        </div>
+### Gallery Listing (`generateRouteContent`)
 
-        <!-- For each ### subdirectory -->
-        <a href="/gallery/{path}/{subdir}">{description}</a>
-      `,
-    })
-  )
-```
+- **Masonry/Grid**: Improve the image grid layout.
+- **Card Styling**:
+  - Update `card` classes to use `card-compact` on mobile.
+  - Add `hover:shadow-xl` and `transition-all duration-300` for interactivity.
+  - Ensure images have `object-cover` and consistent aspect ratios where possible (or handle variable heights gracefully).
+- **Navigation**: Improve the "Back" button and sub-gallery links styling.
 
-## Script Behavior
+### Image Detail (`generateImageDetailPage`)
 
-1. **Clean**: Delete everything under `routes/gallery/`
-2. **Scan**: Recursively find all `about.md` files under `data/`
-3. **Parse**: For each `about.md`:
-   - Extract title (text after "# Title: ")
-   - Extract intro paragraph (first paragraph after title)
-   - Extract images (`## filename.jpeg` + following paragraphs)
-   - Extract subdirectory links (`### dirname` + following paragraph)
-4. **Generate**: Create route file with proper relative imports
-5. **Copy**: Copy jpeg files to `images/` subdirectory
+- **Layout**: Center the image with a maximum height (`max-h-[80vh]`).
+- **Controls**: Place navigation/close buttons in a clear toolbar above or overlaying the image.
+- **Metadata**: Style the description and title elegantly below the image.
 
-## File Naming
+## Phase 4: Refinement
 
-- `data/vancouver/about.md` → `routes/gallery/vancouver/(vancouver).server.ts`
-- `data/vancouver/trees/about.md` → `routes/gallery/vancouver/trees/(trees).server.ts`
-
-## Image Handling
-
-- Source: `data/vancouver/IDG_123.jpeg`
-- Destination: `routes/gallery/vancouver/images/IDG_123.jpeg`
-- URL: `/gallery/vancouver/images/IDG_123.jpeg`
+- **Typography**: Check heading sizes and readability.
+- **Spacing**: Ensure consistent margins/padding (using Tailwind's `my-4`, `p-6`, etc.).
+- **Mobile Check**: Verify all views work well on small screens.
