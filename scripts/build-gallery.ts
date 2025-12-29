@@ -154,11 +154,9 @@ export const GET = () =>
       children: html\`
         <div class="max-w-4xl mx-auto">
           <div class="flex flex-row justify-between items-center mb-4">
-            <p>${escapeHtml(description)}</p>
-            <a href="/gallery/${galleryPath}/" class="btn btn-circle btn-primary">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
+            <p class="mr-2">${escapeHtml(description)}</p>
+            <a href="/gallery/${galleryPath}/" class="btn btn-primary">
+              Back to ${escapeHtml(galleryTitle)}
             </a>
           </div>
           <img src="/gallery/${galleryPath}/images/${imageName}" alt="${escapeHtml(description)}" class="w-full" />
@@ -204,7 +202,7 @@ const generateRouteContent = (
         : ''
 
       return `
-        <a href="/gallery/${subdirPath}/" class="card bg-base-100 shadow hover:shadow-md transition-shadow overflow-hidden">
+        <a href="/gallery/${subdirPath}/" class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
           ${thumbHtml}
           <div class="card-body p-4 flex flex-row items-center justify-between">
             <span class="font-semibold">${escapeHtml(subdir.description)}</span>
@@ -238,12 +236,21 @@ export const GET = () =>
           <h1 class="text-3xl font-bold mb-2">${escapeHtml(parsed.title)}</h1>
           <p class="text-lg text-base-content/80 max-w-2xl">${escapeHtml(parsed.introParagraph)}</p>
         </div>
-        
-        ${subdirLinks ? `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">${subdirLinks}</div>` : ''}
 
-        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
           ${imageCards}
         </div>
+
+        ${
+          subdirLinks
+            ? `
+        <div class="mb-2">
+          <h2 class="text-xl font-bold mb-2">This album also includes collections for:</h2>
+        </div>`
+            : ''
+        }
+
+        ${subdirLinks ? `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-2">${subdirLinks}</div>` : ''}
       \`,
     })
   )
@@ -323,7 +330,7 @@ export const GET = () =>
       children: html\`
         <div class="text-center py-8">
           <h1 class="text-4xl font-bold mb-4">Photo Gallery</h1>
-          <p class="text-lg text-base-content/70">Browse our photo collections</p>
+          <p class="text-lg text-base-content/70">Browse the photo collections</p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 ${cards}

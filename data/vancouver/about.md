@@ -1,4 +1,4 @@
-# Title: First stop: Vancouver
+# Title: Vancouver, November 2025
 
 We wanted to break up the long flight to Japan into two parts, and I'd
 always wanted to visit Vancouver. Here are some photos from our stay.
