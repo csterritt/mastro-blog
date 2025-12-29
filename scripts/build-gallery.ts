@@ -142,7 +142,9 @@ const generateImageDetailPage = (
   description: string,
   galleryPath: string,
   relativeToComponents: string,
-  galleryTitle: string
+  galleryTitle: string,
+  prevImageSlug: string,
+  nextImageSlug: string
 ): string => {
   return `import { html, htmlToResponse } from '@mastrojs/mastro'
 import { Layout } from '${relativeToComponents}/components/Layout.js'
@@ -159,7 +161,17 @@ export const GET = () =>
               Back to ${escapeHtml(galleryTitle)}
             </a>
           </div>
-          <img src="/gallery/${galleryPath}/images/${imageName}" alt="${escapeHtml(description)}" class="w-full" />
+          <div class="relative group">
+            <img src="/gallery/${galleryPath}/images/${imageName}" alt="${escapeHtml(description)}" class="w-full" />
+
+            <a href="/gallery/${galleryPath}/big/${prevImageSlug}/" class="absolute left-2 top-1/2 -translate-y-1/2 btn btn-circle btn-sm md:btn-md btn-ghost bg-base-100/30 hover:bg-base-100/80 text-base-content border-none backdrop-blur-sm transition-all">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-5 h-5 md:w-6 md:h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </a>
+
+            <a href="/gallery/${galleryPath}/big/${nextImageSlug}/" class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-circle btn-sm md:btn-md btn-ghost bg-base-100/30 hover:bg-base-100/80 text-base-content border-none backdrop-blur-sm transition-all">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-5 h-5 md:w-6 md:h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+          </div>
         </div>
       \`,
     })
@@ -432,7 +444,16 @@ const main = async () => {
     const bigDir = join(gallerySubdir, 'big')
     await mkdir(bigDir, { recursive: true })
 
-    for (const img of parsed.images) {
+    for (let i = 0; i < parsed.images.length; i++) {
+      const img = parsed.images[i]!
+      const prevIndex = (i - 1 + parsed.images.length) % parsed.images.length
+      const nextIndex = (i + 1) % parsed.images.length
+      const prevImg = parsed.images[prevIndex]!
+      const nextImg = parsed.images[nextIndex]!
+
+      const prevImageSlug = prevImg.filename.replace(/\.jpeg$/i, '')
+      const nextImageSlug = nextImg.filename.replace(/\.jpeg$/i, '')
+
       const descriptionText = img.paragraphs.join(' ')
       const imageNameWithoutExt = img.filename.replace(/\.jpeg$/i, '')
       const bigDepth = dataSubdir.split('/').length + 3
@@ -446,7 +467,9 @@ const main = async () => {
         descriptionText,
         dataSubdir,
         bigRelativeToComponents,
-        parsed.title
+        parsed.title,
+        prevImageSlug,
+        nextImageSlug
       )
       const imageDetailFile = join(
         imageDetailDir,
