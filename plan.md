@@ -64,3 +64,30 @@ The gallery logic lives in `scripts/build-gallery.ts`. We will modify the string
 - **Typography**: Check heading sizes and readability.
 - **Spacing**: Ensure consistent margins/padding (using Tailwind's `my-4`, `p-6`, etc.).
 - **Mobile Check**: Verify all views work well on small screens.
+
+## Sub-Gallery Design Proposals
+
+Current issue: Sub-galleries and image cards look too similar (both are vertical cards with thumbnails). Here are three concepts to differentiate them:
+
+1.  **The "Folder" Metaphor (Visual Distinction)**
+    - **Concept**: Keep them in the grid but change their visual language to imply "container".
+    - **Implementation**:
+      - Use a different background color (e.g., `bg-neutral` or `bg-base-200` with `text-neutral-content`) to contrast with the white/base image cards.
+      - Add a "tab" top border or a "stacked photos" effect (using CSS pseudo-elements `::before`/`::after` to create rotated layers behind the main card) to suggest depth/multiplicity.
+      - Change the aspect ratio to be slightly wider (4:3) compared to square image crops.
+
+2.  **The "List Group" (Structural Distinction)**
+    - **Concept**: Move sub-galleries out of the mixed grid entirely or style them as a list to mimic a filesystem or directory structure.
+    - **Implementation**:
+      - Render sub-galleries as wide, horizontal rows (`flex-row`) at the top of the page (or distinct section).
+      - Small thumbnail on the left (avatar/square size), bold title, and description on the right.
+      - Clear "Chevron Right" icon to indicate navigation.
+      - This creates a clear hierarchy: "Navigational items first (List), then Content (Grid)".
+
+3.  **The "Banner/Hero" Cards (Hierarchy Distinction)**
+    - **Concept**: Treat sub-galleries as "Featured Collections" or major sections rather than just equal grid items.
+    - **Implementation**:
+      - Make them larger (spanning 2 columns on grid `col-span-2`) or full width.
+      - Use the thumbnail as a full-cover background image with a dark gradient overlay (`bg-gradient-to-t`).
+      - Overlay white text (Title + "N photos") on top of the image.
+      - This breaks the visual rhythm of the grid and signals "these are categories", not individual photos.

@@ -210,15 +210,19 @@ const generateRouteContent = (
       const subdirThumb = subdirMetadata?.thumbnail
 
       const thumbHtml = subdirThumb
-        ? `<figure class="h-32 overflow-hidden"><img src="/gallery/${subdirPath}/images/${subdirThumb}" alt="${escapeHtml(subdir.description)}" class="w-full h-full object-cover" /></figure>`
-        : ''
+        ? `<figure><img src="/gallery/${subdirPath}/images/${subdirThumb}" alt="${escapeHtml(subdir.description)}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" /></figure>`
+        : `<figure class="bg-neutral flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-neutral-content/30" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg></figure>`
 
       return `
-        <a href="/gallery/${subdirPath}/" class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+        <a href="/gallery/${subdirPath}/" class="card col-span-1 md:col-span-2 image-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-64 md:h-80 group overflow-hidden">
           ${thumbHtml}
-          <div class="card-body p-4 flex flex-row items-center justify-between">
-            <span class="font-semibold">${escapeHtml(subdir.description)}</span>
-             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+          <div class="card-body justify-end">
+            <h2 class="card-title text-2xl md:text-3xl text-white drop-shadow-md">
+              ${escapeHtml(subdir.description)}
+            </h2>
+            <div class="card-actions justify-end">
+               <span class="btn btn-primary btn-sm">Explore Collection</span>
+            </div>
           </div>
         </a>`
     })
@@ -314,18 +318,16 @@ const generateGalleryIndex = (
   const cards = galleryEntries
     .map((entry) => {
       const thumbHtml = entry.thumbnail
-        ? `<figure class="h-32 overflow-hidden"><img src="/gallery/${entry.path}/images/${entry.thumbnail}" alt="${escapeHtml(entry.title)}" class="w-full h-full object-cover" /></figure>`
-        : ''
+        ? `<figure><img src="/gallery/${entry.path}/images/${entry.thumbnail}" alt="${escapeHtml(entry.title)}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" /></figure>`
+        : `<figure class="bg-neutral flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-neutral-content/30" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg></figure>`
 
       return `
-        <a href="/gallery/${entry.path}/" class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden">
+        <a href="/gallery/${entry.path}/" class="card col-span-1 md:col-span-2 image-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-64 md:h-80 group overflow-hidden">
           ${thumbHtml}
-          <div class="card-body">
-            <h2 class="card-title text-primary">${escapeHtml(entry.title)}</h2>
+          <div class="card-body justify-end">
+            <h2 class="card-title text-3xl text-white drop-shadow-md">${escapeHtml(entry.title)}</h2>
             <div class="card-actions justify-end">
-               <button class="btn btn-square btn-ghost">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-               </button>
+               <button class="btn btn-primary">Browse Gallery</button>
             </div>
           </div>
         </a>`
