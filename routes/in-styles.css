@@ -4,3 +4,8 @@
     retro --default,
     aqua --prefersdark;
 }
+
+/* Make image cards less dark than the default (uncustomizable?) daisyui default */
+.card.image-full > figure img {
+  filter: brightness(50%);
+}
