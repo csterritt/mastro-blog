@@ -24,3 +24,15 @@ Some local trees, with lots of fall colors.
 ### moa
 
 The Museum of Anthropology
+IDG_20251101_144558_224.jpeg
+IDG_20251101_144900_983.jpeg
+IDG_20251101_174520_265.jpeg
+IDG_20251103_102908_795.jpeg
+IDG_20251103_122130_657.jpeg
+IDG_20251104_081421_280.jpeg
+IDG_20251104_100523_480.jpeg
+IMG_1922.jpeg
+IMG_1924.jpeg
+IMG_1959.jpeg
+IMG_1960.jpeg
+IMG_2402.jpeg

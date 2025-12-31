@@ -248,9 +248,13 @@ export const GET = () =>
       title: '${escapeHtml(parsed.title)}',
       children: html\`
         ${backLink}
-        <div class="mb-8">
+        <div class="mb-6">
           <h1 class="text-3xl font-bold mb-2">${escapeHtml(parsed.title)}</h1>
           <p class="text-lg text-base-content/80 max-w-2xl">${escapeHtml(parsed.introParagraph)}</p>
+        </div>
+
+        <div class="mb-6">
+          <h3 class="text-sm italic">Click any image to view it in full size</h3>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
