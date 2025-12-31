@@ -1,16 +1,38 @@
 # Title: Decrative English in Japan
 
-So English text is used a lot in Japan for decoration - the meaning
+English text is used a lot in Japan for decoration - the meaning
 is pretty much ignored.
 
-- thumb:
+I'm sorry I didn't get a photo of the "Loose Motorcycles" place.
+Appeared to be a used motorcycle shop.
 
-## IDG_20251101_144558_224.jpeg
+- thumb: IMG_2327_thumb.jpeg
 
-Our initial view from the air, coming into Vancouver.
-IMG_1996.jpeg
-IMG_2023.jpeg
-IMG_2030.jpeg
-IMG_2146.jpeg
-IMG_2327.jpeg
-IMG_2399.jpeg
+## IMG_2327.jpeg
+
+A great example of decorative English.
+
+## IMG_1996.jpeg
+
+Happily indeed!
+
+## IMG_2023.jpeg
+
+Eddy the bus
+
+## IMG_2030.jpeg
+
+Bustle gain Dearly
+
+Present a claim
+
+Being confident and pride allows you to express your
+true feelings rightness
+
+## IMG_2146.jpeg
+
+Yup.
+
+## IMG_2399.jpeg
+
+Not entirely convinced this is appetizing.

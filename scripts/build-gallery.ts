@@ -154,12 +154,12 @@ export const GET = () =>
     Layout({
       title: '${escapeHtml(galleryTitle)}',
       children: html\`
-        <div class="max-w-4xl mx-auto">
-          <div class="flex flex-row justify-between items-center mb-4">
-            <p class="mr-2">${escapeHtml(description)}</p>
+        <div class="max-w-6xl mx-auto">
+          <div class="flex flex-col md:flex-row-reverse justify-between items-center mb-4">
             <a href="/gallery/${galleryPath}/" class="btn btn-primary">
               Back to ${escapeHtml(galleryTitle)}
             </a>
+            <p class="mr-2">${escapeHtml(description)}</p>
           </div>
           <div class="relative group">
             <img src="/gallery/${galleryPath}/images/${imageName}" alt="${escapeHtml(description)}" class="w-full" />
