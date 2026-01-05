@@ -1,5 +1,6 @@
 import { readdir, readFile, rm, mkdir, copyFile, writeFile } from 'fs/promises'
 import { join } from 'path'
+import { marked } from 'marked'
 
 interface ImageEntry {
   filename: string
@@ -139,7 +140,8 @@ const escapeHtml = (str: string): string => {
 
 const generateImageDetailPage = (
   imageName: string,
-  description: string,
+  descriptionHtml: string,
+  descriptionText: string,
   galleryPath: string,
   relativeToComponents: string,
   galleryTitle: string,
@@ -159,10 +161,10 @@ export const GET = () =>
             <a href="/gallery/${galleryPath}/" class="btn btn-primary">
               Back to ${escapeHtml(galleryTitle)}
             </a>
-            <p class="mr-2">${escapeHtml(description)}</p>
+            <div class="mr-2 prose max-w-none">${descriptionHtml}</div>
           </div>
           <div class="relative group">
-            <img src="/gallery/${galleryPath}/images/${imageName}" alt="${escapeHtml(description)}" class="w-full" />
+            <img src="/gallery/${galleryPath}/images/${imageName}" alt="${escapeHtml(descriptionText)}" class="w-full" />
 
             <a href="/gallery/${galleryPath}/big/${prevImageSlug}/" class="absolute left-2 top-1/2 -translate-y-1/2 btn btn-circle btn-sm md:btn-md btn-ghost bg-base-100/30 hover:bg-base-100/80 text-base-content border-none backdrop-blur-sm transition-all">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-5 h-5 md:w-6 md:h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
@@ -461,6 +463,10 @@ const main = async () => {
       const nextImageSlug = nextImg.filename.replace(/\.jpeg$/i, '')
 
       const descriptionText = img.paragraphs.join(' ')
+      const descriptionMarkdown = img.paragraphs.join('\n\n')
+      const descriptionHtml = marked.parse(descriptionMarkdown, {
+        async: false,
+      }) as string
       const imageNameWithoutExt = img.filename.replace(/\.jpeg$/i, '')
       const bigDepth = dataSubdir.split('/').length + 3
       const bigRelativeToComponents = '../'.repeat(bigDepth) + '..'
@@ -470,6 +476,7 @@ const main = async () => {
 
       const imageDetailContent = generateImageDetailPage(
         img.filename,
+        descriptionHtml,
         descriptionText,
         dataSubdir,
         bigRelativeToComponents,

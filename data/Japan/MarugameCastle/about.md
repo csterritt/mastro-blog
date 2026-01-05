@@ -33,8 +33,7 @@ And bonsai. Note the flowers! In November!
 
 ## IDG_20251110_113024_528.jpeg
 
-On the walk up to the castle. This is the information center. The photo does
-no justice to the steepness of the walk.
+On the walk up to the castle. This is the information center. The photo does no justice to the steepness of the walk.
 
 ## IDG_20251110_113548_747.jpeg
 
@@ -75,10 +74,7 @@ sites they've visited.
 
 ## IDG_20251110_120509_163.jpeg
 
-This is, possibly, the steepest staircase I've ever been up (and down).
-I didn't really have a problem, but since it's Japan, we were given slippers
-to wear, and my son-in-law found he had trouble keeping them on going up and
-down the stairs.
+This is, possibly, the steepest staircase I've ever been up (and down). I didn't really have a problem, but since it's Japan, we were given slippers to wear, and my son-in-law found he had trouble keeping them on going up and down the stairs.
 
 ## IDG_20251110_120657_314.jpeg
 
@@ -103,8 +99,7 @@ typical of the area.
 
 ## IDG_20251110_122454_553.jpeg
 
-My grandson found a kind of back way down from the keep, which had some
-interesting views.
+My grandson found a kind of back way down from the keep, which had some interesting views.
 
 ## IDG_20251110_122558_399.jpeg
 
@@ -112,8 +107,7 @@ Looking back up at the keep from the back way.
 
 ## IDG_20251110_122629_004.jpeg
 
-Plants growing on the wall... this is a sub-tropical area, so it's not
-surprising.
+Plants growing on the wall... this is a sub-tropical area, so it's not surprising.
 
 ## IDG_20251110_124232_172.jpeg
 

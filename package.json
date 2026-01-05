@@ -8,10 +8,12 @@
   },
   "dependencies": {
     "@jsr/mastrojs__mastro": "0.6.1",
-    "@mastrojs/markdown": "npm:@jsr/mastrojs__markdown",
     "@mastrojs/mastro": "npm:@jsr/mastrojs__mastro",
     "@tailwindcss/cli": "4.1.18",
+    "@tailwindcss/typography": "0.5.19",
+    "@types/marked": "5.0.2",
     "concurrently": "9.2.1",
+    "marked": "17.0.1",
     "prettier": "3.7.4",
     "tailwindcss": "4.1.18",
     "urlpattern-polyfill": "^10.1.0"

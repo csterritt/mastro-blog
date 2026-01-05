@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin "@tailwindcss/typography";
 @plugin "daisyui" {
   themes:
     retro --default,
@@ -8,4 +9,8 @@
 /* Make image cards less dark than the default (uncustomizable?) daisyui default */
 .card.image-full > figure img {
   filter: brightness(47%);
+}
+
+.prose > p {
+  @apply indent-4;
 }
