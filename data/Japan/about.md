@@ -139,4 +139,4 @@ Ritsurin Garden - A Special Place of Scenic Beauty
 
 ### Temples
 
-Various photos of the grounds around some of the temples in the area.
+Photos of the grounds around some of the temples in the area.
