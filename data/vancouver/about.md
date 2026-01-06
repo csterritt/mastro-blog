@@ -16,6 +16,32 @@ Another aerial view, this time towards the port.
 
 The City Hall building, showing off the cool art-deco architecture and neon (!!!) clock.
 
+## IDG_20251103_102908_795.jpeg
+
+## IDG_20251103_122130_657.jpeg
+
+These tiny houses are, evidently, a fairly common thing in the city.
+
+## IDG_20251104_081421_280.jpeg
+
+The window in the main eating area in our B&B.
+
+## IDG_20251104_100523_480.jpeg
+
+A beautiful "little library" in the city.
+
+## IMG_1924.jpeg
+
+## IMG_1959.jpeg
+
+No idea if these artworks were commissioned, or... "donated".
+
+## IMG_1960.jpeg
+
+## IMG_2402.jpeg
+
+On the front door of our B&B.
+
 ### trees
 
 Some local trees, with lots of fall colors.
@@ -23,15 +49,3 @@ Some local trees, with lots of fall colors.
 ### moa
 
 The Museum of Anthropology
-IDG_20251101_144558_224.jpeg
-IDG_20251101_144900_983.jpeg
-IDG_20251101_174520_265.jpeg
-IDG_20251103_102908_795.jpeg
-IDG_20251103_122130_657.jpeg
-IDG_20251104_081421_280.jpeg
-IDG_20251104_100523_480.jpeg
-IMG_1922.jpeg
-IMG_1924.jpeg
-IMG_1959.jpeg
-IMG_1960.jpeg
-IMG_2402.jpeg

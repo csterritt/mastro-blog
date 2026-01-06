@@ -95,8 +95,7 @@ A beautifully formed tree in front of the castle.
 
 ## IDG_20251110_122308_043.jpeg
 
-A view of the city. Here you can see the pretty random layout of buildings
-typical of the area.
+A view of the city. Here you can see the pretty random layout of buildings typical of the area.
 
 ## IDG_20251110_122454_553.jpeg
 
