@@ -1,10 +1,8 @@
 # Title: Decrative English in Japan
 
-English text is used a lot in Japan for decoration - the meaning
-is pretty much ignored.
+English text is used a lot in Japan for decoration - the meaning is pretty much ignored.
 
-I'm sorry I didn't get a photo of the "Loose Motorcycles" place.
-Appeared to be a used motorcycle shop.
+I'm sorry I didn't get a photo of the "Loose Motorcycles" place. Appeared to be a used motorcycle shop.
 
 - thumb: IMG_2327_thumb.jpeg
 
@@ -26,8 +24,7 @@ Bustle gain Dearly
 
 Present a claim
 
-Being confident and pride allows you to express your
-true feelings rightness
+Being confident and pride allows you to express your true feelings rightness
 
 ## IMG_2146.jpeg
 

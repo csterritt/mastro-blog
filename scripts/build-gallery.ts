@@ -184,7 +184,18 @@ const generateRouteContent = (
 ): string => {
   const imageCards = parsed.images
     .map((img) => {
-      const descriptionText = img.paragraphs.join(' ')
+      // const descriptionText = img.paragraphs.join(' ')
+      const descriptionHtml = marked.parse(img.paragraphs.join(' '), {
+        async: false,
+      })
+      const descriptionText = descriptionHtml
+        .replace(/<[^>]*>/g, '')
+        .replace(/&#39;/g, "'")
+        .replace(/&quot;/g, '"')
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(parseInt(code)))
       const imageNameWithoutExt = img.filename.replace(/\.jpeg$/i, '')
       return `
         <a href="/gallery/${galleryPath}/big/${imageNameWithoutExt}/" class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">

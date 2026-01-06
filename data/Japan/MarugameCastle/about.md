@@ -1,7 +1,6 @@
 # Title: Marugame Castle, November 2025
 
-My son-in-law and older grandson took a train trip to see Marugame Castle, which is about
-an hour away from where they live.
+My son-in-law and older grandson took a train trip to see Marugame Castle, which is about an hour away from where they live.
 
 It is designated a National Historic Site of Japan, and an Important Cultural Property.
 

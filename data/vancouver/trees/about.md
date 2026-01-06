@@ -1,7 +1,6 @@
 # Title: Various trees in Vancouver
 
-We got lucky with timing of the colors of the leaves...
-we hadn't had much color in Virginia when we left.
+We got lucky with timing of the colors of the leaves... we hadn't had much color in Virginia when we left.
 
 - thumb: IDG_20251101_170933_304.jpeg
 
