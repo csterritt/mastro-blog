@@ -5,6 +5,8 @@ an hour away from where they live.
 
 It is designated a National Historic Site of Japan, and an Important Cultural Property.
 
+Its [wikipedia page](https://en.wikipedia.org/wiki/Marugame_Castle) has a lot of information about the history of the castle.
+
 - thumb: IDG_20251110_112509_530_thumb.jpeg
 
 ## IDG_20251110_112509_530.jpeg

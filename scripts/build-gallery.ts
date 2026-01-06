@@ -49,6 +49,7 @@ const parseAboutMd = (content: string): ParsedAbout => {
     const trimmedLine = line.trim()
     if (trimmedLine.startsWith('- thumb:')) {
       thumbnail = trimmedLine.slice('- thumb:'.length).trim()
+      collectingIntro = false
       continue
     }
 
@@ -89,15 +90,7 @@ const parseAboutMd = (content: string): ParsedAbout => {
     }
 
     if (collectingIntro) {
-      if (line.trim() === '') {
-        if (introParagraphLines.length > 0) {
-          introParagraph = introParagraphLines.join(' ')
-          collectingIntro = false
-        }
-      } else {
-        introParagraphLines.push(line.trim())
-      }
-
+      introParagraphLines.push(line.trim())
       continue
     }
 
@@ -114,8 +107,8 @@ const parseAboutMd = (content: string): ParsedAbout => {
     }
   }
 
-  if (introParagraphLines.length > 0 && introParagraph === '') {
-    introParagraph = introParagraphLines.join(' ')
+  if (introParagraphLines.length > 0) {
+    introParagraph = introParagraphLines.join('\n').trim()
   }
 
   if (currentImage) {
@@ -241,6 +234,10 @@ const generateRouteContent = (
         </div>`
       : ''
 
+  const introHtml = marked.parse(parsed.introParagraph, {
+    async: false,
+  }) as string
+
   return `import { html, htmlToResponse } from '@mastrojs/mastro'
 import { Layout } from '${relativeToComponents}/components/Layout.js'
 
@@ -252,7 +249,7 @@ export const GET = () =>
         ${backLink}
         <div class="mb-6">
           <h1 class="text-3xl font-bold mb-2">${escapeHtml(parsed.title)}</h1>
-          <p class="text-lg text-base-content/80 max-w-2xl">${escapeHtml(parsed.introParagraph)}</p>
+          <div class="prose max-w-2xl">${introHtml}</div>
         </div>
 
         <div class="mb-6">
