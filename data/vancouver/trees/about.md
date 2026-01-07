@@ -14,7 +14,7 @@ A local beauty, as seen from our B&B.
 
 ## IDG_20251102_165313_116.jpeg
 
-A pinecone found across the street from the Museum of Anthropology.
+A Douglas Fir pinecone found across the street from the Museum of Anthropology.
 
 ## IDG_20251103_084310_994.jpeg
 

@@ -5,3 +5,4 @@ generated/
 *.jpeg
 routes/styles.css
 routes/gallery/*
+tmp
