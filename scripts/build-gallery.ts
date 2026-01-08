@@ -156,8 +156,8 @@ export const GET = () =>
             </a>
             <div class="mr-2 prose max-w-none">${descriptionHtml}</div>
           </div>
-          <div class="relative group">
-            <img src="/gallery/${galleryPath}/images/${imageName}" alt="${escapeHtml(descriptionText)}" class="w-full" />
+          <div class="relative group flex justify-center">
+            <img src="/gallery/${galleryPath}/images/${imageName}" alt="${escapeHtml(descriptionText)}" class="max-h-[85vh] w-auto max-w-full object-contain shadow-lg" />
 
             <a href="/gallery/${galleryPath}/big/${prevImageSlug}/" class="absolute left-2 top-1/2 -translate-y-1/2 btn btn-circle btn-sm md:btn-md btn-ghost bg-base-100/30 hover:bg-base-100/80 text-base-content border-none backdrop-blur-sm transition-all">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-5 h-5 md:w-6 md:h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
