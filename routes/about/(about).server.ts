@@ -10,7 +10,15 @@ export const GET = () =>
           <div class="card bg-base-100 shadow-xl">
             <div class="card-body">
               <h1 class="card-title text-3xl mb-4">About</h1>
-              <p class="text-lg">All about us. Me. Whatever.</p>
+              <p class="text-lg">My blog and photo gallery.</p>
+              <p class="text-lg">
+                Built with
+                <a
+                  href="https://github.com/mastrojs/mastro"
+                  class="link link-hover font-bold"
+                  >Mastro</a
+                >.
+              </p>
               <div class="card-actions justify-end mt-6">
                 <a href="/" class="btn btn-primary">Back Home</a>
               </div>

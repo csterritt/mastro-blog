@@ -3,7 +3,7 @@ import { html } from '@mastrojs/mastro'
 export const Header = () => html`
   <div class="navbar bg-base-100 shadow-sm">
     <div class="flex-1">
-      <a href="/" class="btn btn-ghost text-xl">My Awesome Website</a>
+      <a href="/" class="btn btn-ghost text-xl">My Web, and welcome to it.</a>
     </div>
     <div class="flex-none">
       <ul class="menu menu-horizontal px-1">

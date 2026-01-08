@@ -6,12 +6,6 @@ export const Footer = () => html`
   >
     <aside>
       <p>
-        Built with
-        <a
-          href="https://github.com/mastrojs/mastro"
-          class="link link-hover font-bold"
-          >Mastro</a
-        >. <br />
         Copyright Chris Sterritt © ${new Date().getFullYear()} - All rights
         reserved
       </p>
