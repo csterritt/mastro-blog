@@ -263,19 +263,24 @@ export const GET = () =>
           <div class="prose max-w-2xl">${introHtml}</div>
         </div>
 
+        ${
+          imageCards.length > 0
+            ? `
         <div class="mb-6">
           <h3 class="text-sm italic">Click any image to view it in full size</h3>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
           ${imageCards}
-        </div>
+        </div>`
+            : ''
+        }
 
         ${
           subdirLinks
             ? `
         <div class="mb-2">
-          <h2 class="text-xl font-bold mb-2">This album also includes collections for:</h2>
+          <h2 class="text-xl font-bold mb-2">Collections:</h2>
         </div>`
             : ''
         }
