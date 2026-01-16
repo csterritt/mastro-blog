@@ -16,6 +16,10 @@ Another aerial view, this time towards the port.
 
 The City Hall building, showing off the cool art-deco architecture and neon (!!!) clock.
 
+## IMG_5433.jpeg
+
+Their beautiful city library, which was wonderful inside as well.
+
 ## IDG_20251103_102908_795.jpeg
 
 ## IDG_20251103_122130_657.jpeg

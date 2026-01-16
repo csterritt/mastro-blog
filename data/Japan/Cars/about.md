@@ -39,3 +39,11 @@ A "gomi shu shu sha" (garbage truck). I know the Japanese since it's my younger 
 ## IDG_20251119_110032_770.jpeg
 
 A recreational vehicle (RV) in a parking lot.
+
+## IMG_5713.jpeg
+
+A food service truck. My grandson and I got pretty good waffle-with-sweet-stuff things from it.
+
+## IMG_5871.jpeg
+
+A typical US size delivery truck on the left, and a typical Japanese delivery truck on the right.

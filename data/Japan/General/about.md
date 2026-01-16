@@ -8,6 +8,10 @@ Some pictures from our visit to Japan to visit our older daughter and her family
 
 We wound up missing our flight from Tokyo to Takamatsu, and ANA (All Nippon Airways) put us up for the night in a hotel in the airport. The (incredibly helpful and polite) ANA person asked us if we had any preference for what kind of bed we wanted, and we said we'd take anything. And we got it!
 
+## IMG_5454.jpeg
+
+More Sesame Street characters.
+
 ## IMG_1987.jpeg
 
 Two terra-cotta cats, having quite the discussion.
@@ -60,6 +64,10 @@ Note the narrow white building, and the gray one behind it... elevators aren't r
 
 Another very narrow building.
 
+## IMG_5524.jpeg
+
+Did I mention the narrow buildings? This is from the top floor of our airbnb, looking down the _extremely_ steep staircase. Note the lack of handrails. We asked our host to install a bar at the top, which he graciously did, to keep us from falling down the stairs going to the bathroom, which was on the other side of this landing.
+
 ## IMG_1993.jpeg
 
 The area where the kids live is transitioning from farmland to general urban development. But it's kind of patchy - small plots like this are common, sprinkled throughout the area.
@@ -92,6 +100,10 @@ I enjoyed seeing the wide range of architectural styles in Japan.
 
 This train is decorated with characters from the "Anpanman" books and anime.
 
+## IMG_5977.jpeg
+
+The text on the train says (machine translation): "I want to protect you. Universal Home."
+
 ## IMG_2309.jpeg
 
 Continuing the theme of "decorating trains with company products", this train is decorated with Pokemon characters.
@@ -100,6 +112,10 @@ Continuing the theme of "decorating trains with company products", this train is
 
 Kind of amazed that they went so far as to have special fabric for the seats!
 
+## IMG_5824.jpeg
+
+Also amazed that they decorate the walls and ceilings.
+
 ## IMG_2346.jpeg
 
 A shopping mall, open to the elements. The climate is very mild in Takamatsu, except for the summer, which can be very hot.
@@ -107,3 +123,11 @@ A shopping mall, open to the elements. The climate is very mild in Takamatsu, ex
 ## IMG_2347.jpeg
 
 The mall's mascot keeping an eye on things.
+
+## IMG_5688.jpeg
+
+We went to a festival at my granddaughter's school. The students had done a lot of art, which was impressive, given that these are grade school students!
+
+## IMG_5687.jpeg
+
+More festival art.

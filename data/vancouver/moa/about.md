@@ -27,3 +27,23 @@ Decorated box, about three feet high.
 Some potlach bowls, and statuary.
 
 A [potlach](https://en.wikipedia.org/wiki/Potlatch) is a ceremonial feast given by a leader of a Pacific Northwest Native tribe. They're feeding the whole community, so these bowls are large (four to six feet long).
+
+## IMG_5390.jpeg
+
+An indiginous artist, Sharon Reay, did a sculpture of "Alice in Wonderland". It's about 12 inches high, and incredibly detailed.
+
+## IMG_5391.jpeg
+
+## IMG_5386.jpeg
+
+## IMG_5392.jpeg
+
+## IMG_5388.jpeg
+
+## IMG_5399.jpeg
+
+A bear sculpture, done by an indigenous artist. Interestingly, it was a "Please Touch" exhibit.
+
+## IMG_5402.jpeg
+
+Finally, of course, I bought a chocolate bar from the gift shop. How could I resist that name?
