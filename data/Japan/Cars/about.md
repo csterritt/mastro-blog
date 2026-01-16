@@ -42,7 +42,7 @@ A recreational vehicle (RV) in a parking lot.
 
 ## IMG_5713.jpeg
 
-A food service truck. My grandson and I got pretty good waffle-with-sweet-stuff things from it.
+A food service truck. My grandson and I got pretty good crepes from it.
 
 ## IMG_5871.jpeg
 
