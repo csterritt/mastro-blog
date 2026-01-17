@@ -156,17 +156,35 @@ export const GET = () =>
             </a>
             <div class="mr-2 prose max-w-none">${descriptionHtml}</div>
           </div>
-          <div class="relative group flex justify-center">
+          <div class="relative group flex justify-center" data-image-nav>
             <img src="/gallery/${galleryPath}/images/${imageName}" alt="${escapeHtml(descriptionText)}" class="max-h-[85vh] w-auto max-w-full object-contain shadow-lg" />
 
-            <a href="/gallery/${galleryPath}/big/${prevImageSlug}/" class="absolute left-2 top-1/2 -translate-y-1/2 btn btn-circle btn-sm md:btn-md btn-ghost bg-base-100/30 hover:bg-base-100/80 text-base-content border-none backdrop-blur-sm transition-all">
+            <a href="/gallery/${galleryPath}/big/${prevImageSlug}/" data-nav="prev" class="absolute left-2 top-1/2 -translate-y-1/2 btn btn-circle btn-sm md:btn-md btn-ghost bg-base-100/30 hover:bg-base-100/80 text-base-content border-none backdrop-blur-sm transition-all">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-5 h-5 md:w-6 md:h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
             </a>
 
-            <a href="/gallery/${galleryPath}/big/${nextImageSlug}/" class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-circle btn-sm md:btn-md btn-ghost bg-base-100/30 hover:bg-base-100/80 text-base-content border-none backdrop-blur-sm transition-all">
+            <a href="/gallery/${galleryPath}/big/${nextImageSlug}/" data-nav="next" class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-circle btn-sm md:btn-md btn-ghost bg-base-100/30 hover:bg-base-100/80 text-base-content border-none backdrop-blur-sm transition-all">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-5 h-5 md:w-6 md:h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             </a>
           </div>
+          <script>
+            (() => {
+              const navRoot = document.querySelector('[data-image-nav]')
+              if (!navRoot) {
+                return
+              }
+              const prevLink = navRoot.querySelector('[data-nav="prev"]')
+              const nextLink = navRoot.querySelector('[data-nav="next"]')
+              document.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowLeft' && prevLink instanceof HTMLAnchorElement) {
+                  prevLink.click()
+                }
+                if (event.key === 'ArrowRight' && nextLink instanceof HTMLAnchorElement) {
+                  nextLink.click()
+                }
+              })
+            })()
+          </script>
         </div>
       \`,
     })
