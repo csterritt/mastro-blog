@@ -1,0 +1,198 @@
+{
+  "meta": {
+    "description": "Design tokens and styling configuration for site recreation",
+    "framework": "tailwindcss",
+    "version": "4.1.18",
+    "componentLibrary": "daisyui",
+    "componentLibraryVersion": "5.5.14"
+  },
+  "themes": {
+    "light": "retro",
+    "dark": "aqua",
+    "defaultMode": "light"
+  },
+  "plugins": ["@tailwindcss/typography"],
+  "colors": {
+    "semantic": {
+      "base-100": "Primary background (cards, navbar)",
+      "base-200": "Secondary background (page, hero)",
+      "base-300": "Tertiary background (footer)",
+      "base-content": "Primary text color",
+      "primary": "Call-to-action elements",
+      "secondary": "Secondary actions",
+      "neutral": "Fallback backgrounds",
+      "neutral-content": "Text on neutral"
+    }
+  },
+  "typography": {
+    "headings": {
+      "hero": "text-5xl font-bold",
+      "page": "text-4xl font-bold",
+      "section": "text-3xl font-bold",
+      "subsection": "text-xl font-bold",
+      "card": "text-2xl md:text-3xl"
+    },
+    "body": {
+      "default": "",
+      "large": "text-lg",
+      "small": "text-sm",
+      "muted": "text-base-content/70",
+      "italic": "text-sm italic"
+    },
+    "prose": {
+      "base": "prose",
+      "small": "prose prose-sm",
+      "constrained": "prose max-w-2xl",
+      "full": "prose max-w-none"
+    }
+  },
+  "spacing": {
+    "container": {
+      "maxWidth": "max-w-7xl",
+      "padding": "px-4",
+      "centered": "mx-auto"
+    },
+    "sections": {
+      "vertical": "py-8",
+      "marginBottom": ["mb-4", "mb-6", "mb-8"]
+    },
+    "cards": {
+      "compact": "p-4",
+      "default": "card-body"
+    },
+    "footer": "p-10",
+    "gaps": ["gap-4", "gap-6"]
+  },
+  "shadows": {
+    "subtle": "shadow-sm",
+    "default": "shadow-xl",
+    "hover": "hover:shadow-2xl",
+    "image": "shadow-lg"
+  },
+  "layout": {
+    "page": {
+      "html": "h-full bg-base-200",
+      "body": "min-h-full flex flex-col",
+      "main": "flex-1 container mx-auto px-4 py-8 max-w-7xl"
+    },
+    "grids": {
+      "twoColumn": "grid grid-cols-1 md:grid-cols-2 gap-6",
+      "threeColumn": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6",
+      "fourColumn": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"
+    }
+  },
+  "components": {
+    "navbar": {
+      "container": "navbar bg-base-100 shadow-sm",
+      "brand": "btn btn-ghost text-xl",
+      "menu": "menu menu-horizontal px-1"
+    },
+    "footer": {
+      "container": "footer footer-center p-10 bg-base-300 text-base-content rounded"
+    },
+    "hero": {
+      "container": "hero min-h-[50vh] bg-base-200 rounded-box mb-8",
+      "content": "hero-content text-center",
+      "textContainer": "max-w-md"
+    },
+    "card": {
+      "base": "card bg-base-100 shadow-xl",
+      "hover": "hover:shadow-2xl transition-all duration-300 hover:-translate-y-1",
+      "imageFull": "card image-full",
+      "body": "card-body",
+      "compactBody": "card-body p-4",
+      "title": "card-title",
+      "actions": "card-actions justify-end"
+    },
+    "imageCard": {
+      "link": "card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1",
+      "figure": "aspect-square overflow-hidden",
+      "image": "w-full h-full object-cover",
+      "description": "text-sm line-clamp-3"
+    },
+    "collectionCard": {
+      "link": "card col-span-1 md:col-span-2 image-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-64 md:h-80 group overflow-hidden",
+      "image": "w-full h-full object-cover transition-transform duration-700 group-hover:scale-105",
+      "body": "card-body justify-end",
+      "title": "card-title text-2xl md:text-3xl text-white drop-shadow-md"
+    },
+    "imageDetail": {
+      "container": "max-w-6xl mx-auto",
+      "header": "flex flex-col md:flex-row-reverse justify-between items-center mb-4",
+      "imageContainer": "relative group flex justify-center",
+      "image": "max-h-[85vh] w-auto max-w-full object-contain shadow-lg",
+      "navButton": "absolute top-1/2 -translate-y-1/2 btn btn-circle btn-sm md:btn-md btn-ghost bg-base-100/30 hover:bg-base-100/80 text-base-content border-none backdrop-blur-sm transition-all"
+    },
+    "button": {
+      "primary": "btn btn-primary",
+      "secondary": "btn btn-secondary",
+      "ghost": "btn btn-ghost",
+      "small": "btn btn-sm",
+      "circle": "btn btn-circle"
+    },
+    "link": {
+      "styled": "link link-hover",
+      "bold": "link link-hover font-bold"
+    }
+  },
+  "customCSS": {
+    "imageFullBrightness": {
+      "selector": ".card.image-full > figure img",
+      "property": "filter",
+      "value": "brightness(47%)"
+    },
+    "proseIndent": {
+      "selector": ".prose > p",
+      "directive": "@apply indent-4"
+    }
+  },
+  "breakpoints": {
+    "sm": "640px",
+    "md": "768px",
+    "lg": "1024px",
+    "xl": "1280px",
+    "2xl": "1536px"
+  },
+  "transitions": {
+    "default": "transition-all duration-300",
+    "slow": "transition-transform duration-700"
+  },
+  "useCases": {
+    "globalLayout": {
+      "description": "Page shell with header, main content, footer",
+      "files": [
+        "components/Layout.ts",
+        "components/Header.ts",
+        "components/Footer.ts"
+      ]
+    },
+    "navigation": {
+      "description": "Top navigation bar with brand and menu",
+      "files": ["components/Header.ts"]
+    },
+    "hero": {
+      "description": "Prominent welcome/landing section",
+      "files": ["routes/index.server.ts"]
+    },
+    "contentCards": {
+      "description": "Information cards for navigation or content",
+      "files": ["routes/index.server.ts", "routes/about/(about).server.ts"]
+    },
+    "galleryGrid": {
+      "description": "Grid of clickable image thumbnails",
+      "files": ["scripts/build-gallery.ts"]
+    },
+    "collectionCards": {
+      "description": "Featured collection links with background images",
+      "files": ["scripts/build-gallery.ts"]
+    },
+    "imageDetail": {
+      "description": "Full-size image display with navigation",
+      "files": ["scripts/build-gallery.ts"]
+    },
+    "proseContent": {
+      "description": "Rich text content with typography styling",
+      "files": ["routes/in-styles.css"]
+    }
+  }
+}
