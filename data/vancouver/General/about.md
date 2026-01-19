@@ -38,7 +38,7 @@ A beautiful "little library" in the city.
 
 ## IMG_1959.jpeg
 
-No idea if these artworks were commissioned, or... "donated".
+These artworks part of a municipal art program. They arrange the covers so that the utility box can still be used.
 
 ## IMG_1960.jpeg
 
