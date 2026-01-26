@@ -38,7 +38,7 @@ From the temple across the street from where we stayed. Machine translation of t
 
 ## IDG_20251115_104945_911.jpeg
 
-Temple dog at the temple across the street from where we stayed.
+Inari fox statue at the temple across the street from where we stayed.
 
 ## IMG_2315.jpeg
 
